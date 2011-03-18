@@ -1,0 +1,39 @@
+<project name="SamplePogicMod" default="dist" basedir=".">
+	<property name="pluginname" value="SamplePogicMod"/>
+	<property name="plugins" location="../plugins/Pogic/client/"/>
+	<property name="mcp" location="../mcp29a/sources/minecraft/"/>
+
+	<property name="src" location="src"/>
+	<property name="bin" location="bin"/>
+	<property name="dist" location="dist"/>
+	
+	<target name="init">
+		<mkdir dir="${bin}"/>
+	</target>
+	
+	<target name="compile" depends="init">
+		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+			<classpath>
+				<pathelement location="${mcp}"/>
+			</classpath>
+		</javac>
+	</target>
+	
+	<target name="dist" depends="compile">
+		<mkdir dir="${dist}"/>
+		<jar jarfile="${dist}/${pluginname}.jar">
+			<fileset dir="${bin}"/>
+			<fileset file="${src}/pogic.properties"/>
+<!--			<fileset dir="${src}/com/example/mob/"/> -->
+		</jar>
+	</target>
+	
+	<target name="deploy" depends="dist">
+		<copy file="${dist}/${pluginname}.jar" todir="${plugins}"/>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${bin}"/>
+		<delete dir="${dist}"/>
+	</target>
+</project>
