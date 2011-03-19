@@ -1,6 +1,6 @@
 <project name="SamplePogicMod" default="dist" basedir=".">
 	<property name="pluginname" value="SamplePogicMod"/>
-	<property name="plugins" location="../plugins/Pogic/client/"/>
+	<property name="plugins" location="../clientmods/"/>
 	<property name="mcp" location="../mcp29a/bin/minecraft/"/>
 	<property name="lwjgl" location="../mcp29a/jars/bin/lwjgl.jar"/>
 
