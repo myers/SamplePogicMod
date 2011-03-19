@@ -10,10 +10,10 @@ import net.minecraft.src.Item;
 import net.minecraft.src.NBTTagCompound;
 import net.minecraft.src.World;
 
-public class EntityCreeper2 extends EntityMobs
+public class ClientEntityBabyCreeper extends EntityMobs
 {
 
-    public EntityCreeper2(World world)
+    public ClientEntityBabyCreeper(World world)
     {
         super(world);
         texture = "/mob/creeper.png";
@@ -22,6 +22,7 @@ public class EntityCreeper2 extends EntityMobs
     protected void entityInit()
     {
         super.entityInit();
+        System.out.println("entityInit");
         dataWatcher.addObject(16, Byte.valueOf((byte)-1));
     }
 
@@ -37,6 +38,8 @@ public class EntityCreeper2 extends EntityMobs
 
     public void onUpdate()
     {
+        System.out.println("onUpdate");
+
         lastActiveTime = timeSinceIgnited;
         if(worldObj.multiplayerWorld)
         {
@@ -71,6 +74,8 @@ public class EntityCreeper2 extends EntityMobs
     public void onDeath(Entity entity)
     {
         super.onDeath(entity);
+        System.out.println("onDeath");
+
         if(entity instanceof EntitySkeleton)
         {
             dropItem(Item.record13.shiftedIndex + rand.nextInt(2), 1);
@@ -79,30 +84,33 @@ public class EntityCreeper2 extends EntityMobs
 
     protected void attackEntity(Entity entity, float f)
     {
-        int i = func_21091_q();
-        if(i <= 0 && f < 3F || i > 0 && f < 7F)
-        {
-            if(timeSinceIgnited == 0)
-            {
-                worldObj.playSoundAtEntity(this, "random.fuse", 1.0F, 0.5F);
-            }
-            func_21090_e(1);
-            timeSinceIgnited++;
-            if(timeSinceIgnited >= 30)
-            {
-                worldObj.createExplosion(this, posX, posY, posZ, 3F);
-                setEntityDead();
-            }
-            hasAttacked = true;
-        } else
-        {
-            func_21090_e(-1);
-            timeSinceIgnited--;
-            if(timeSinceIgnited < 0)
-            {
-                timeSinceIgnited = 0;
-            }
-        }
+        System.out.println("attackEntity");
+        throw new RuntimeException("IS this dead code");
+//
+//        int i = func_21091_q();
+//        if(i <= 0 && f < 3F || i > 0 && f < 7F)
+//        {
+//            if(timeSinceIgnited == 0)
+//            {
+//                worldObj.playSoundAtEntity(this, "random.fuse", 1.0F, 0.5F);
+//            }
+//            func_21090_e(1);
+//            timeSinceIgnited++;
+//            if(timeSinceIgnited >= 30)
+//            {
+//                worldObj.createExplosion(this, posX, posY, posZ, 3F);
+//                setEntityDead();
+//            }
+//            hasAttacked = true;
+//        } else
+//        {
+//            func_21090_e(-1);
+//            timeSinceIgnited--;
+//            if(timeSinceIgnited < 0)
+//            {
+//                timeSinceIgnited = 0;
+//            }
+//        }
     }
 
     public float func_440_b(float f)

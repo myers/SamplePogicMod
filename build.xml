@@ -1,7 +1,8 @@
 <project name="SamplePogicMod" default="dist" basedir=".">
 	<property name="pluginname" value="SamplePogicMod"/>
 	<property name="plugins" location="../plugins/Pogic/client/"/>
-	<property name="mcp" location="../mcp29a/sources/minecraft/"/>
+	<property name="mcp" location="../mcp29a/bin/minecraft/"/>
+	<property name="lwjgl" location="../mcp29a/jars/bin/lwjgl.jar"/>
 
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
@@ -15,16 +16,17 @@
 		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
 			<classpath>
 				<pathelement location="${mcp}"/>
+				<pathelement location="${lwjgl}"/>
 			</classpath>
 		</javac>
 	</target>
 	
 	<target name="dist" depends="compile">
 		<mkdir dir="${dist}"/>
-		<jar jarfile="${dist}/${pluginname}.jar">
+		<jar jarfile="${dist}/${pluginname}.jar" includes="**/*.png">
 			<fileset dir="${bin}"/>
 			<fileset file="${src}/pogic.properties"/>
-<!--			<fileset dir="${src}/com/example/mob/"/> -->
+			<fileset dir="${src}/resources"/> 
 		</jar>
 	</target>
 	

@@ -3,24 +3,21 @@ package org.maski.samplepogicmod;
 // Jad home page: http://www.kpdus.com/jad.html
 // Decompiler options: packimports(3) braces deadcode 
 
-import net.minecraft.src.EntityCreeper;
-import net.minecraft.src.EntityLiving;
-import net.minecraft.src.MathHelper;
-import net.minecraft.src.RenderLiving;
+import net.minecraft.src.*;
 
 import org.lwjgl.opengl.GL11;
 
-public class RenderCreeper2 extends RenderLiving
+public class RenderBabyCreeper extends RenderLiving
 {
 
-    public RenderCreeper2()
+    public RenderBabyCreeper()
     {
-        super(new ModelCreeper2(), 0.5F);
+        super(new ModelBabyCreeper(), 0.25F);
     }
 
-    protected void updateCreeperScale(EntityCreeper entitycreeper, float f)
+    protected void updateCreeperScale(ClientEntityBabyCreeper entitycreeper, float f)
     {
-        EntityCreeper entitycreeper1 = entitycreeper;
+        ClientEntityBabyCreeper entitycreeper1 = entitycreeper;
         float f1 = entitycreeper1.func_440_b(f);
         float f2 = 1.0F + MathHelper.sin(f1 * 100F) * f1 * 0.01F;
         if(f1 < 0.0F)
@@ -38,9 +35,9 @@ public class RenderCreeper2 extends RenderLiving
         GL11.glScalef(f3, f4, f3);
     }
 
-    protected int updateCreeperColorMultiplier(EntityCreeper entitycreeper, float f, float f1)
+    protected int updateCreeperColorMultiplier(ClientEntityBabyCreeper entitycreeper, float f, float f1)
     {
-        EntityCreeper entitycreeper1 = entitycreeper;
+        ClientEntityBabyCreeper entitycreeper1 = entitycreeper;
         float f2 = entitycreeper1.func_440_b(f1);
         if((int)(f2 * 10F) % 2 == 0)
         {
@@ -63,11 +60,12 @@ public class RenderCreeper2 extends RenderLiving
 
     protected void preRenderCallback(EntityLiving entityliving, float f)
     {
-        updateCreeperScale((EntityCreeper)entityliving, f);
+    	GL11.glScalef(0.5F, 0.5F, 0.5F);
+        updateCreeperScale((ClientEntityBabyCreeper)entityliving, f);
     }
 
     protected int getColorMultiplier(EntityLiving entityliving, float f, float f1)
     {
-        return updateCreeperColorMultiplier((EntityCreeper)entityliving, f, f1);
+        return updateCreeperColorMultiplier((ClientEntityBabyCreeper)entityliving, f, f1);
     }
 }

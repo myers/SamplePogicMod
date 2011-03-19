@@ -4,10 +4,10 @@ import net.minecraft.src.MathHelper;
 import net.minecraft.src.ModelBase;
 import net.minecraft.src.ModelRenderer;
 
-public class ModelCreeper2 extends ModelBase
+public class ModelBabyCreeper extends ModelBase
 {
 
-    public ModelCreeper2()
+    public ModelBabyCreeper()
     {
         float f = 0.0F;
         int i = 4;
@@ -36,7 +36,8 @@ public class ModelCreeper2 extends ModelBase
 
     public void render(float f, float f1, float f2, float f3, float f4, float f5)
     {
-        setRotationAngles(f, f1, f2, f3, f4, f5);
+        System.out.println("Render");
+    	setRotationAngles(f, f1, f2, f3, f4, f5);
         head.render(f5);
         body.render(f5);
         leg1.render(f5);
