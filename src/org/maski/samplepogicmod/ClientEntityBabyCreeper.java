@@ -22,7 +22,6 @@ public class ClientEntityBabyCreeper extends EntityMobs
     protected void entityInit()
     {
         super.entityInit();
-        System.out.println("entityInit");
         dataWatcher.addObject(16, Byte.valueOf((byte)-1));
     }
 
@@ -38,8 +37,6 @@ public class ClientEntityBabyCreeper extends EntityMobs
 
     public void onUpdate()
     {
-        System.out.println("onUpdate");
-
         lastActiveTime = timeSinceIgnited;
         if(worldObj.multiplayerWorld)
         {
@@ -74,8 +71,6 @@ public class ClientEntityBabyCreeper extends EntityMobs
     public void onDeath(Entity entity)
     {
         super.onDeath(entity);
-        System.out.println("onDeath");
-
         if(entity instanceof EntitySkeleton)
         {
             dropItem(Item.record13.shiftedIndex + rand.nextInt(2), 1);
@@ -84,8 +79,7 @@ public class ClientEntityBabyCreeper extends EntityMobs
 
     protected void attackEntity(Entity entity, float f)
     {
-        System.out.println("attackEntity");
-        throw new RuntimeException("IS this dead code");
+        throw new RuntimeException("IS this dead code?");
 //
 //        int i = func_21091_q();
 //        if(i <= 0 && f < 3F || i > 0 && f < 7F)
